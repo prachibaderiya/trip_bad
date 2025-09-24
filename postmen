@@ -1,0 +1,120 @@
+Postman Endpoints for Trip Management
+
+Base URL (local):
+
+http://localhost:8080/api/trips
+
+1️⃣ Create a new Trip
+
+POST /api/trips
+
+📌 Request Body (JSON):
+
+{
+  "destination": "Goa",
+  "startDate": "2025-10-01",
+  "endDate": "2025-10-07",
+  "price": 15000,
+  "status": "PLANNED"
+}
+
+
+📌 Response (201 Created):
+
+{
+  "id": 1,
+  "destination": "Goa",
+  "startDate": "2025-10-01",
+  "endDate": "2025-10-07",
+  "price": 15000,
+  "status": "PLANNED"
+}
+
+2️⃣ Get all Trips (with pagination & filtering)
+
+GET /api/trips?page=0&size=5&status=PLANNED
+
+📌 Response (200 OK):
+
+{
+  "content": [
+    {
+      "id": 1,
+      "destination": "Goa",
+      "startDate": "2025-10-01",
+      "endDate": "2025-10-07",
+      "price": 15000,
+      "status": "PLANNED"
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 5
+  },
+  "totalElements": 1,
+  "totalPages": 1,
+  "last": true
+}
+
+3️⃣ Get a Trip by ID
+
+GET /api/trips/1
+
+📌 Response (200 OK):
+
+{
+  "id": 1,
+  "destination": "Goa",
+  "startDate": "2025-10-01",
+  "endDate": "2025-10-07",
+  "price": 15000,
+  "status": "PLANNED"
+}
+
+
+📌 If ID not found → (404 Not Found):
+
+{
+  "error": "Trip not found with ID: 99"
+}
+
+4️⃣ Update a Trip
+
+PUT /api/trips/1
+
+📌 Request Body (JSON):
+
+{
+  "destination": "Manali",
+  "startDate": "2025-11-10",
+  "endDate": "2025-11-20",
+  "price": 20000,
+  "status": "CONFIRMED"
+}
+
+
+📌 Response (200 OK):
+
+{
+  "id": 1,
+  "destination": "Manali",
+  "startDate": "2025-11-10",
+  "endDate": "2025-11-20",
+  "price": 20000,
+  "status": "CONFIRMED"
+}
+
+5️⃣ Delete a Trip
+
+DELETE /api/trips/1
+
+📌 Response (204 No Content):
+
+(no body)
+
+
+📌 If ID not found → (404 Not Found):
+
+{
+  "error": "Trip not found with ID: 1"
+}
